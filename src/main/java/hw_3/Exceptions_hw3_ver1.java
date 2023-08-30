@@ -7,34 +7,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Exceptions_hw3_ver1 {
-
-//	Напишите приложение, которое будет запрашивать у пользователя следующие 
-//	данные в произвольном порядке, разделенные пробелом:
-//	Фамилия Имя Отчество датарождения номертелефона пол
-//	Форматы данных:
-//	фамилия, имя, отчество - строки
-//	датарождения - строка формата dd.mm.yyyy
-//	номертелефона - целое беззнаковое число без форматирования
-//	пол - символ латиницей f или m.
-	
-//	Приложение должно проверить введенные данные по количеству. 
-//	Если количество не совпадает с требуемым, вернуть код ошибки, 
-//	обработать его и показать пользователю сообщение, что он ввел меньше 
-//	и больше данных, чем требуется.
-
-//	Приложение должно попытаться распарсить полученные значения и выделить 
-//	из них требуемые параметры. Если форматы данных не совпадают, нужно 
-//	бросить исключение, соответствующее типу проблемы. Можно использовать 
-//	встроенные типы java и создать свои. Исключение должно быть корректно 
-//	обработано, пользователю выведено сообщение с информацией, что именно 
-//	неверно.
-
-//	Если всё введено и обработано верно, должен создаться файл с названием, 
-//	равным фамилии, в него в одну строку должны записаться полученные данные, 
-//	вида:
-//	<Фамилия><Имя><Отчество><датарождения> <номертелефона><пол>
-
-//	Однофамильцы должны записаться в один и тот же файл, в отдельные строки.
 	
 	public static void main(String[] args) {
 		data_parse_load();
@@ -50,9 +22,9 @@ public class Exceptions_hw3_ver1 {
 		boolean correct = true;
 		try {
 			if (parsed_data.length != 6 || 
-					!parsed_data[0].matches("^[a-zA-Z]+$") || 
-					!parsed_data[1].matches("^[a-zA-Z]+$") || 
-					!parsed_data[2].matches("^[a-zA-Z]+$")) {
+					!parsed_data[0].matches("^[a-zA-Zа-яА-Я]+$") || 
+					!parsed_data[1].matches("^[a-zA-Zа-яА-Я]+$") || 
+					!parsed_data[2].matches("^[a-zA-Zа-яА-Я]+$")) {
 				correct = false;
 				throw new InputMismatchException();
 			}
@@ -72,7 +44,7 @@ public class Exceptions_hw3_ver1 {
 			} else if (Integer.parseInt(parsed_data_buffer[1]) > 12 || 
 					Integer.parseInt(parsed_data_buffer[2]) > 
 			Calendar.getInstance().get(Calendar.YEAR) || 
-			Integer.parseInt(parsed_data_buffer[2]) < 1950) {
+			Integer.parseInt(parsed_data_buffer[2]) < 1900) {
 				throw new NumberFormatException();
 			} else if (parsed_data_buffer[0].length() != 2 || 
 					parsed_data_buffer[1].length() != 2 || 
